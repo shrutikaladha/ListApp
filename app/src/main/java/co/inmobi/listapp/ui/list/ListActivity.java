@@ -1,6 +1,7 @@
 package co.inmobi.listapp.ui.list;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
@@ -8,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.google.gson.Gson;
 
 import java.util.HashSet;
 import java.util.List;
@@ -44,8 +47,6 @@ public class ListActivity extends AppCompatActivity {
         listComponent = ((ListApplication) getApplicationContext()).getAppComponent().listComponent().create();
         listComponent.inject(this);
 
-        startTime = System.currentTimeMillis();
-
         activityListBinding = ActivityListBinding.inflate(getLayoutInflater());
         View view = activityListBinding.getRoot();
         setContentView(view);
@@ -58,6 +59,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        startTime = System.currentTimeMillis();
         subscribeUI();
     }
 
@@ -105,7 +107,10 @@ public class ListActivity extends AppCompatActivity {
                     case SUCCESS:
                         List<User> userList = listStateData.getData();
                         int numUsers = userList == null ? 0 : userList.size();
-                        showTotalNumberOfUsers(numUsers);
+                        Gson gson = new Gson();
+                        String jsonStr = gson.toJson(userList);
+                        int charLen = TextUtils.isEmpty(jsonStr) ? 0 : jsonStr.length();
+                        showTotalNumberOfCharacters(numUsers, charLen);
                         onApiResponseReceived(USERS_API);
                         break;
                     case ERROR:
@@ -139,10 +144,10 @@ public class ListActivity extends AppCompatActivity {
         activityListBinding.tvNoResults.setVisibility(View.VISIBLE);
     }
 
-    private void showTotalNumberOfUsers(int numUsers) {
-        Log.d(TAG, "showTotalNumberOfUsers() : " + numUsers);
+    private void showTotalNumberOfCharacters(int numUsers, int characterCount) {
+        Log.d(TAG, "showTotalNumberOfCharacters() : " + numUsers + " characterCount: " + characterCount);
 
-        activityListBinding.tvChars.setText(numUsers + "");
+        activityListBinding.tvChars.setText(numUsers + " Users " + " / " + characterCount + " characters");
         activityListBinding.llNumChars.setVisibility(View.VISIBLE);
         activityListBinding.llBottomView.setVisibility(View.VISIBLE);
     }
