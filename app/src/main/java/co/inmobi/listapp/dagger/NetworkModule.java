@@ -4,7 +4,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Singleton;
 
-import co.inmobi.listapp.network.RetrofitService;
+import co.inmobi.listapp.data.RetrofitService;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
