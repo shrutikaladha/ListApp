@@ -179,6 +179,7 @@ public class ListActivity extends AppCompatActivity {
         activityListBinding.llBottomView.setVisibility(View.VISIBLE);
     }
 
+    //Added for testing purpose.
     public void setTestViewModel(ListViewModel listViewModel) {
         this.listViewModel = listViewModel;
     }
