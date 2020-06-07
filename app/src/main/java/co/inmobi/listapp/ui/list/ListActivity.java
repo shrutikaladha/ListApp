@@ -83,6 +83,7 @@ public class ListActivity extends AppCompatActivity {
                     case ERROR:
                         hideListProgressLoader();
                         Throwable e = listStateData.getError();
+                        Log.e(TAG, e.getMessage());
                         showError();
                         break;
                     case LOADING:
@@ -106,6 +107,11 @@ public class ListActivity extends AppCompatActivity {
                         int numUsers = userList == null ? 0 : userList.size();
                         showTotalNumberOfUsers(numUsers);
                         onApiResponseReceived(USERS_API);
+                        break;
+                    case ERROR:
+                        Throwable e = listStateData.getError();
+                        Log.e(TAG, e.getMessage());
+                        showError();
                         break;
                     default:
                         break;

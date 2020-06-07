@@ -5,5 +5,5 @@
     <string name="number_of_users">Number of Users</string>
     <string name="total_elapsed_time">Total Elapsed Time</string>
     <string name="no_results_found">No Results Found.</string>
-    <string name="something_went_wrong">Something went wrong, please retry later.</string>
+    <string name="something_went_wrong">Something went wrong, Please try later.</string>
 </resources>

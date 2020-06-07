@@ -75,7 +75,7 @@
                 android:gravity="center"
                 android:textSize="@dimen/title_font_size"
                 android:textColor="@color/colorPrimary"
-                android:text="Character count"
+                android:text="@string/number_of_users"
                 android:typeface="sans" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="@dimen/title_font_size"
-                android:text="Total Elapsed time"
+                android:text="@string/total_elapsed_time"
                 android:textColor="@color/colorPrimary"
                 android:typeface="sans" />
 
