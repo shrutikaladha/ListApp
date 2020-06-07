@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <ProgressBar
+        android:id="@+id/pbList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/tvNoResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/grid_1"
+        android:text="@string/no_results_found"
+        android:textSize="@dimen/title_font_size"
+        android:textColor="@color/colorPrimary"
+        android:typeface="sans"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/grid_1"
+        android:text="@string/something_went_wrong"
+        android:textSize="@dimen/title_font_size"
+        android:textColor="@color/error_color"
+        android:typeface="sans"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:paddingBottom="@dimen/grid_1"
+        android:layout_marginBottom="55dp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/llBottomView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:padding="@dimen/grid_1"
+        android:background="@color/background"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/llNumChars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border"
+            android:orientation="vertical"
+            android:layout_weight="0.5"
+            android:padding="@dimen/grid_half"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvNumChars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/title_font_size"
+                android:textColor="@color/colorPrimary"
+                android:text="Character count"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/tvChars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                tools:text="565"
+                android:textColor="@color/colorPrimaryDark"
+                android:typeface="sans" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llElapsedTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border"
+            android:orientation="vertical"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="@dimen/grid_half"
+            android:padding="@dimen/grid_half"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvTotalElapsedTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/title_font_size"
+                android:text="Total Elapsed time"
+                android:textColor="@color/colorPrimary"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/tvElapsedTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                tools:text="565 ms"
+                android:textColor="@color/colorPrimaryDark"
+                android:typeface="sans" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>
