@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,6 +21,9 @@ import co.inmobi.listapp.databinding.ActivityListBinding;
 import co.inmobi.listapp.model.Post;
 import co.inmobi.listapp.model.User;
 
+import static co.inmobi.listapp.Constants.ApiIdentifiers.POST_API;
+import static co.inmobi.listapp.Constants.ApiIdentifiers.USERS_API;
+
 public class ListActivity extends AppCompatActivity {
 
     @Inject
@@ -29,6 +33,9 @@ public class ListActivity extends AppCompatActivity {
     ListComponent listComponent;
     PostListAdapter postListAdapter;
 
+    long startTime;
+    HashSet<Integer> apiResponseReceivedSet = new HashSet<>();
+
     public static final String TAG = "ListActivity";
 
     @Override
@@ -36,6 +43,8 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         listComponent = ((ListApplication) getApplicationContext()).getAppComponent().listComponent().create();
         listComponent.inject(this);
+
+        startTime = System.currentTimeMillis();
 
         activityListBinding = ActivityListBinding.inflate(getLayoutInflater());
         View view = activityListBinding.getRoot();
@@ -69,6 +78,7 @@ public class ListActivity extends AppCompatActivity {
                         } else {
                             showNoResultsFound();
                         }
+                        onApiResponseReceived(POST_API);
                         break;
                     case ERROR:
                         hideListProgressLoader();
@@ -95,6 +105,7 @@ public class ListActivity extends AppCompatActivity {
                         List<User> userList = listStateData.getData();
                         int numUsers = userList == null ? 0 : userList.size();
                         showTotalNumberOfUsers(numUsers);
+                        onApiResponseReceived(USERS_API);
                         break;
                     default:
                         break;
@@ -138,5 +149,27 @@ public class ListActivity extends AppCompatActivity {
     private void showListProgressLoader() {
         Log.d(TAG, "showListProgressLoader()");
         activityListBinding.pbList.setVisibility(View.VISIBLE);
+    }
+
+    private void onApiResponseReceived(int apiId) {
+        Log.d(TAG, "onApiResponseReceived() : " + apiId + " elapsedTime: " + (System.currentTimeMillis() - startTime));
+        if (!apiResponseReceivedSet.contains(apiId)) {
+            apiResponseReceivedSet.add(apiId);
+        }
+
+        if ((apiResponseReceivedSet.size() == 2)
+                && apiResponseReceivedSet.contains(POST_API)
+                && apiResponseReceivedSet.contains(USERS_API)) {
+            long currTime = System.currentTimeMillis();
+            long elapsedTime = currTime - startTime;
+            showTotalElapsedTime(elapsedTime);
+        }
+    }
+
+    private void showTotalElapsedTime(long elapsedTime) {
+        Log.d(TAG, "showTotalElapsedTime() : " + elapsedTime);
+        activityListBinding.llElapsedTime.setVisibility(View.VISIBLE);
+        activityListBinding.tvElapsedTime.setText(elapsedTime + " millis");
+        activityListBinding.llBottomView.setVisibility(View.VISIBLE);
     }
 }
