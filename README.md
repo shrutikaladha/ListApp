@@ -63,4 +63,7 @@ Can write further test cases for RetrofitService to test the response being rece
 ##### Logging:
 Defined HTTPLoggingInterceptor as part of Network module for tracking request/response for easy debugging of API.
 
+![MainActivity](docs/mainActivity.png?raw=true "MainActivity Snapshot")
+![ListActivity](docs/listActivity.png?raw=true "ListActivity Snapshot")
+
 
