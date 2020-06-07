@@ -55,8 +55,10 @@ various states(loading, success, error, ..) can be managed through a single comp
 6. Unit Tests
 Currently, Roboelectric tests are added for ListActivity and MainActivity using Mockito to check the correct state of various UI components
 in various scenarios.
-Extension:
+Extensions:
 Can write further test cases for RetrofitService to test the response being received and further handling for it.
 
+For Logging:
+Defined an HTTPLoggingInterceptor as part of Network module for tracking request/response for easy debugging of API.
 
 
