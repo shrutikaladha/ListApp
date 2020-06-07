@@ -3,12 +3,12 @@
 ListApp is structured in following way with an intention to keep the code modular, unit testable, extensible and readable.
 It is divided into following packages:
 
-1. Base: It has all classes which would be used as base for multiple operations. They can be extended and modified as per the requirement.
+1. Dagger: It has all classes related to dependency injection and also for maintaining scopes for various classes.
+2. UI: It has all classes related to views : Activity, Fragments, CustomViews, ViewModels, Adapters.
+3. Data: It has all classes which serve data from a remote/local/other source.
+4. Model: It has classes which are used by GSON adapter for parsing API responses.
+5. Base: It has all classes which would be used as base for multiple operations. They can be extended and modified as per the requirement.
 keeping the basic underlying structure the same.
-2. Dagger: It has all classes related to dependency injection and also for maintaining scopes for various classes.
-3. UI: It has all classes related to views : Activity, Fragments, CustomViews, ViewModels, Adapters.
-4. Data: It has all classes which serve data from a remote/local/other source.
-5. Model: It has classes which are used by GSON adapter for parsing API responses.
 6. Unit tests: It has all unit test cases using Roboelectric framework and Mockito.
 
 Classes:
@@ -22,8 +22,8 @@ This is designed and implemented in code to be used based on Component and Subco
 - ListComponent: This is scoped at ListActivity level using attribute subcomponent. Any new activity can be defined in a similar way.
 - SubcomponentsModule: Subcomponents are scoped at activity level. [Defined ActivityScope annotation for that]
 
-2. UI
-Complete UI is being designed based on Material Design Guidenlines to display list items.
+2. UI:
+Complete UI is designed based on Material Design guidelines to display list items.
 Have Used grid system in dimens for maintaining the spacing grid, and fontSizes for header, title and content.
 
 Currently, two activities are added: MainActivity and ListActivity.
