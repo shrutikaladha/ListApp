@@ -1,5 +1,7 @@
 package co.inmobi.listapp.data;
 
+import android.util.Log;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,6 +22,7 @@ import co.inmobi.listapp.model.User;
 public class DataRepository {
 
     private final RemoteDataSource remoteDataSource;
+    private final String TAG = "DataRepository";
 
     @Inject
     public DataRepository(RemoteDataSource remoteDataSource) {
@@ -32,6 +35,7 @@ public class DataRepository {
      * @return
      */
     public StateLiveData<List<Post>> getPosts() {
+        Log.d(TAG, "getPosts()");
         return remoteDataSource.getPosts();
     }
 
@@ -41,6 +45,7 @@ public class DataRepository {
      * @return
      */
     public StateLiveData<List<User>> getUsers() {
+        Log.d(TAG, "getUsers()");
         return remoteDataSource.getUsers();
     }
 

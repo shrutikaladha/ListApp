@@ -1,5 +1,6 @@
 package co.inmobi.listapp.dagger;
 
+import co.inmobi.listapp.ui.list.ListActivity;
 import dagger.Subcomponent;
 
 @ActivityScope
@@ -11,4 +12,5 @@ public interface ListComponent {
         ListComponent create();
     }
 
+    void inject(ListActivity listActivity);
 }

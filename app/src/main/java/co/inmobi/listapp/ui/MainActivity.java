@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import co.inmobi.listapp.databinding.ActivityMainBinding;
+import co.inmobi.listapp.ui.list.ListActivity;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding activityMainBinding;
