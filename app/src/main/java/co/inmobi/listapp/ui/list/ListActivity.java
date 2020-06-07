@@ -26,6 +26,8 @@ import static co.inmobi.listapp.Constants.ApiIdentifiers.USERS_API;
 
 public class ListActivity extends AppCompatActivity {
 
+    public static final String TAG = "ListActivity";
+
     @Inject
     ListViewModel listViewModel;
 
@@ -35,8 +37,6 @@ public class ListActivity extends AppCompatActivity {
 
     long startTime;
     HashSet<Integer> apiResponseReceivedSet = new HashSet<>();
-
-    public static final String TAG = "ListActivity";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -171,5 +171,9 @@ public class ListActivity extends AppCompatActivity {
         activityListBinding.llElapsedTime.setVisibility(View.VISIBLE);
         activityListBinding.tvElapsedTime.setText(elapsedTime + " millis");
         activityListBinding.llBottomView.setVisibility(View.VISIBLE);
+    }
+
+    public void setTestViewModel(ListViewModel listViewModel) {
+        this.listViewModel = listViewModel;
     }
 }
