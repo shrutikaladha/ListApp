@@ -1,7 +1,7 @@
 # ListApp
 
 ListApp is structured in following way with an intention to keep the code modular, unit testable, extensible and readable.
-It is divided into following packages:
+It is divided into following modules:
 
 1. Dagger: It has all classes related to dependency injection and also for maintaining scopes for various classes.
 2. UI: It has all classes related to views : Activity, Fragments, CustomViews, ViewModels, Adapters.
@@ -11,18 +11,20 @@ It is divided into following packages:
 keeping the basic underlying structure the same.
 6. Unit tests: It has all unit test cases using Roboelectric framework and Mockito.
 
-Classes:
+### Classes:
 - Constants: This class defines constants, such as ApiIdentifiers. This can be extended to multiple subclasses defining IntentConstants, ApiConstants, and so on.
 - ListApplication: This application class is added extending Application.java class to build ApplicationComponent and dependency graph.
 
-1. Dagger:
+### Modules:
+
+##### 1. Dagger:
 This is designed and implemented in code to be used based on Component and Subcomponent attributes for dependency injection.
 
 - ApplicationComponent: This is scoped at application level and is defined as component to initialize NetworkModule.
 - ListComponent: This is scoped at ListActivity level using attribute subcomponent. Any new activity can be defined in a similar way.
 - SubcomponentsModule: Subcomponents are scoped at activity level. [Defined ActivityScope annotation for that]
 
-2. UI:
+##### 2. UI:
 Complete UI is designed based on Material Design guidelines to display list items.
 Have Used grid system in dimens for maintaining the spacing grid, and fontSizes for header, title and content.
 
@@ -41,24 +43,24 @@ It shows "No results found" view for that.
 TotalElapsed time is measured as time elapsed between API Request and when both API Responses are received successfully.
 It is not shown when one or both of them fails.
 
-3. Data
+##### 3. Data
 This is structured as DataRepository and corresponding DataSources. Currently, only RemoteDataSource is added which would fetch
 data from API response using retrofit. It can be further extended to support local cache by adding LocalDataSource in data repository.
 
-4. Models:
---
+##### 4. Models:
+It has classes which are used by GSON adapter for parsing API responses.
 
-5. Base -> StateLiveData
+##### 5. Base -> StateLiveData
 This is added to observe and display the exact data state on UI using LiveData. This is used so that multiple observers for observing
 various states(loading, success, error, ..) can be managed through a single component in an efficient way.
 
-6. Unit Tests
+##### 6. Unit Tests
 Currently, Roboelectric tests are added for ListActivity and MainActivity using Mockito to check the correct state of various UI components
 in various scenarios.
 Extensions:
 Can write further test cases for RetrofitService to test the response being received and further handling for it.
 
-For Logging:
-Defined an HTTPLoggingInterceptor as part of Network module for tracking request/response for easy debugging of API.
+##### Logging:
+Defined HTTPLoggingInterceptor as part of Network module for tracking request/response for easy debugging of API.
 
 
